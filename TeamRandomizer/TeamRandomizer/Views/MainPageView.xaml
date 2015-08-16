@@ -1,0 +1,164 @@
+﻿<UserControl x:Class="TeamRandomizer.Views.MainPageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:TeamRandomizer"
+             xmlns:cal="using:Caliburn.Micro"
+             xmlns:micro="http://www.caliburnproject.org"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:settings="clr-namespace:TeamRandomizer.Properties"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             Background="#5a5a5a">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="ListBox.Static.Background"
+                         Color="Transparent" />
+        <SolidColorBrush x:Key="ListBox.Static.Border"
+                         Color="Transparent" />
+        <SolidColorBrush x:Key="ListBox.Disabled.Background"
+                         Color="Transparent" />
+        <SolidColorBrush x:Key="ListBox.Disabled.Border"
+                         Color="Transparent" />
+        <Style TargetType="{x:Type ListView}">
+            <Setter Property="Background"
+                    Value="{StaticResource ListBox.Static.Background}" />
+            <Setter Property="BorderBrush"
+                    Value="{StaticResource ListBox.Static.Border}" />
+            <Setter Property="BorderThickness"
+                    Value="0" />
+            <Setter Property="Foreground"
+                    Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+                    Value="Auto" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                    Value="Auto" />
+            <Setter Property="ScrollViewer.CanContentScroll"
+                    Value="False" />
+            <Setter Property="ScrollViewer.PanningMode"
+                    Value="Both" />
+            <Setter Property="Stylus.IsFlicksEnabled"
+                    Value="False" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListView}">
+                        <Border x:Name="Bd"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                Padding="1"
+                                SnapsToDevicePixels="true">
+                            <ScrollViewer Focusable="false"
+                                          Padding="{TemplateBinding Padding}"
+                                          Template="{DynamicResource ScrollViewerControlTemplate1}">
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </ScrollViewer>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled"
+                                     Value="false">
+                                <Setter Property="Background"
+                                        TargetName="Bd"
+                                        Value="{StaticResource ListBox.Disabled.Background}" />
+                                <Setter Property="BorderBrush"
+                                        TargetName="Bd"
+                                        Value="{StaticResource ListBox.Disabled.Border}" />
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsGrouping"
+                                               Value="true" />
+                                    <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping"
+                                               Value="false" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="ScrollViewer.CanContentScroll"
+                                        Value="false" />
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <TextBlock Text="{x:Static settings:Resources.MainPageWatermark}"
+                               FontSize="50"
+                               Opacity="0.3"
+                               Margin="20" />
+                    <DockPanel Margin="10">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                            <TextBlock Text="{x:Static settings:Resources.ListCount}" Margin="0,0,5,0" />
+                            <TextBlock Text="{Binding PlayerList.Count}" FontWeight="Bold" />
+                        </StackPanel>
+                        <ListView x:Name="PlayerList" DockPanel.Dock="Top"
+                                  HorizontalContentAlignment="Stretch">
+                            <ListView.Resources>
+                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">13</sys:Double>
+                                <Color x:Key="BgBrush">#20000000</Color>
+                            </ListView.Resources>
+                            <ListView.Background>
+                                <SolidColorBrush Color="{DynamicResource BgBrush}" />
+                            </ListView.Background>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="4*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding SummonerName}"
+                                                   FontSize="20" />
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding Division}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </DockPanel>
+                </Grid>
+
+
+                <StackPanel Grid.Column="1"
+                            Margin="0,10,10,10">
+                    <Button x:Name="Import"
+                            Content="{x:Static settings:Resources.Import}"
+                            Height="30"
+                            Margin="0,0,0,20" />
+                    <Button x:Name="Export"
+                            Height="30"
+                            Content="{x:Static settings:Resources.Export}"
+                            Margin="0,0,0,20" />
+                    <Button x:Name="Clear"
+                            Height="30"
+                            Content="{x:Static settings:Resources.Clear}"
+                            Margin="0,0,0,20" />
+                    <Button x:Name="Randomize"
+                            Height="30"
+                            Content="{x:Static settings:Resources.Randomize}"
+                            Margin="0,0,0,20" />
+                </StackPanel>
+            </Grid>
+            <Grid Visibility="{Binding Path=LoadingVisibility}"
+                  Background="Black"
+                  Opacity="0.6">
+                <ProgressBar IsIndeterminate="True"
+                             Height="5"
+                             Margin="100,0" />
+            </Grid>
+        </Grid>
+
+    </Grid>
+
+
+</UserControl>
