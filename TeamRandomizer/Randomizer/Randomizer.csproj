@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Complex.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="RandomizeType.cs" />
     <Compile Include="Simple.cs" />

@@ -94,7 +94,7 @@ namespace TeamRandomizer.ViewModels
 
         public void AddSetting()
         {
-            GroupingSettings.Add(new GroupingSettingsModel("","",1));
+            GroupingSettings.Add(new GroupingSettingsModel("","",0));
             SaveGroupingSettingsModels(GroupingSettings);
         }
 

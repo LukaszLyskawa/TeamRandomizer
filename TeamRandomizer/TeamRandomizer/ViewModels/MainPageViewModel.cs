@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Media.Animation;
 using Caliburn.Micro;
 using Google;
+using Randomizer;
 using TeamRandomizer.Models;
 using static System.String;
 
@@ -66,11 +67,28 @@ namespace TeamRandomizer.ViewModels
         public async void Randomize()
         {
             LoadingVisibility = Visibility.Visible;
-            //TODO randomize logic
-            await Task.Run(async () =>
+            switch (Properties.Settings.Default.RandomizeType)
             {
-                PlayerList = (await Randomizer.Simple.ShuffleListAsync(PlayerList, TimeSpan.FromSeconds(5))).OfType<SummonerDataModel>().ToList();
-            });
+                case RandomizeType.Simple:
+                    {
+                        await Task.Run(async () =>
+                        {
+                            PlayerList = (await Randomizer.Simple.ShuffleListAsync(PlayerList, TimeSpan.FromSeconds(5))).OfType<SummonerDataModel>().ToList();
+                        });
+                        break;
+                    }
+                case RandomizeType.Grouped:
+                    {
+                        //TODO cast SummonerDataModel -> Randomizer.SummonerData
+                        //TODO get grouping settings (use settings page view model method -> maybe extract to class)
+                        //PlayerList =
+                        //    await
+                        //        Randomizer.Complex.Shuffle(PlayerList,Properties.Settings.Default.GroupingSettings,
+                        //            TimeSpan.FromSeconds(5));
+                        break;
+                    }
+            }
+
             LoadingVisibility = Visibility.Collapsed;
         }
 
