@@ -54,9 +54,11 @@
   <ItemGroup>
     <Compile Include="Complex.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="RandomizeType.cs" />
+    <Compile Include="GroupSetting.cs" />
+    <Compile Include="Data\RandomizeType.cs" />
     <Compile Include="Simple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Data\SummonerData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

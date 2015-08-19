@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using Randomizer;
+using Randomizer.Data;
 
 namespace TeamRandomizer
 {

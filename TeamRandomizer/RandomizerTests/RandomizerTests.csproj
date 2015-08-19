@@ -60,6 +60,10 @@
       <Project>{E8E921F0-0F09-44B2-9672-A24D21D845C9}</Project>
       <Name>Randomizer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TeamRandomizer\TeamRandomizer.csproj">
+      <Project>{39266290-6C3C-4212-9DF6-D90C13FA5023}</Project>
+      <Name>TeamRandomizer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

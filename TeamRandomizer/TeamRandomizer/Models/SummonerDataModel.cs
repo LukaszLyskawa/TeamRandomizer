@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Randomizer.Data;
 
 namespace TeamRandomizer.Models
 {
@@ -28,6 +29,16 @@ namespace TeamRandomizer.Models
         public override int GetHashCode()
         {
             return StringComparer.InvariantCultureIgnoreCase.GetHashCode(SummonerName);
+        }
+
+        public static implicit operator SummonerData (SummonerDataModel data)
+        {
+            return new SummonerData(data.SummonerName,(SummonerDivisions)data.Division);
+        }
+
+        public static implicit operator SummonerDataModel (SummonerData data)
+        {
+            return new SummonerDataModel(data.Name,(SummonerDivisions)data.Division);
         }
     }
 }

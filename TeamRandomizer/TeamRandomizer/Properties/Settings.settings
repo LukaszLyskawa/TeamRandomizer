@@ -14,7 +14,7 @@
     <Setting Name="SummonerData" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="RandomizeType" Type="Randomizer.RandomizeType" Scope="User">
+    <Setting Name="RandomizeType" Type="Randomizer.Data.RandomizeType" Scope="User">
       <Value Profile="(Default)">Simple</Value>
     </Setting>
     <Setting Name="GroupingSettings" Type="System.String" Scope="User">

@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using Randomizer.Data;
 using TeamRandomizer.Annotations;
 
 namespace TeamRandomizer.Models
@@ -62,6 +63,16 @@ namespace TeamRandomizer.Models
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public static implicit operator GroupingSettingsModel (GroupSetting data)
+        {
+            return new GroupingSettingsModel((SummonerDivisions)data.From,(SummonerDivisions)data.To,data.Number);
+        }
+
+        public static implicit operator GroupSetting (GroupingSettingsModel data)
+        {
+            return new GroupSetting((SummonerDivisions)data.From,(SummonerDivisions)data.To,data.Amount);
         }
     }
 }

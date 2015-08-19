@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Randomizer
+namespace Randomizer.Data
 {
-    public enum RandomizeType : byte
+    public enum RandomizeType
     {
-        Simple,
+        Simple=0,
         Grouped
     };
 }

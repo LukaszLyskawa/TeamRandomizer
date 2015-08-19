@@ -1,13 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Randomizer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Randomizer;
+using Randomizer.Data;
+using TeamRandomizer.Models;
 
-namespace Randomizer.Tests
+namespace RandomizerTests
 {
     [TestClass()]
     public class ComplexTests
@@ -78,10 +78,35 @@ namespace Randomizer.Tests
                 new GroupSetting(1, 2, 2),
                 new GroupSetting(3, 3, 1)
             };
-            var resultlist =  Complex.Shuffle(summonerdata, groups, TimeSpan.FromMilliseconds(5000)).Result;
-            foreach (var data  in resultlist)
+            var resultlist = Complex.Shuffle(summonerdata, groups, TimeSpan.FromMilliseconds(5000)).Result;
+            foreach (var data in resultlist)
             {
-                Trace.WriteLine(data.Name+" "+data.Division);
+                Trace.WriteLine(data.Name + " " + data.Division);
+            }
+            Assert.IsNotNull(resultlist);
+        }
+
+        [TestMethod()]
+        public void CastTest()
+        {
+            var summonerdata = new List<SummonerDataModel>
+            {
+                new SummonerDataModel("derp1","Unranked"),
+                new SummonerDataModel("derp1","Unranked"),
+                new SummonerDataModel("derp1","Unranked"),
+                new SummonerDataModel("derp1","Unranked"),
+                new SummonerDataModel("derp1","Unranked")
+            };
+            var groups = new List<GroupSetting>
+            {
+                new GroupSetting(0, 0, 2),
+                new GroupSetting(1, 2, 2),
+                new GroupSetting(3, 3, 1)
+            };
+            var resultlist = Complex.Shuffle(summonerdata.Select(data => (SummonerData)data), groups, TimeSpan.FromMilliseconds(5000)).Result;
+            foreach (var data in resultlist)
+            {
+                Trace.WriteLine(data.Name + " " + data.Division);
             }
             Assert.IsNotNull(resultlist);
         }

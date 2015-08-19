@@ -71,9 +71,9 @@ namespace TeamRandomizer.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Simple")]
-        public global::Randomizer.RandomizeType RandomizeType {
+        public global::Randomizer.Data.RandomizeType RandomizeType {
             get {
-                return ((global::Randomizer.RandomizeType)(this["RandomizeType"]));
+                return ((global::Randomizer.Data.RandomizeType)(this["RandomizeType"]));
             }
             set {
                 this["RandomizeType"] = value;

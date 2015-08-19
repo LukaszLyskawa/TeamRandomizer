@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using Randomizer;
+using Randomizer.Data;
 using TeamRandomizer.Models;
 
 namespace TeamRandomizer.ViewModels

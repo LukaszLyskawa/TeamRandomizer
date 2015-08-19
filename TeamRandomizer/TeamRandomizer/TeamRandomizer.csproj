@@ -96,6 +96,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="RandomizeTypeToVisibilityConverter.cs" />
+    <Compile Include="StringToObjectHelper.cs" />
     <Compile Include="SummonerDataComparer.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="Views\MainPageView.xaml.cs">

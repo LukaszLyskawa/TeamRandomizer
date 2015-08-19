@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -10,8 +11,10 @@ using System.Windows.Media.Animation;
 using Caliburn.Micro;
 using Google;
 using Randomizer;
+using Randomizer.Data;
 using TeamRandomizer.Models;
 using static System.String;
+using SummonerData = Randomizer.Data.SummonerData;
 
 namespace TeamRandomizer.ViewModels
 {
@@ -23,28 +26,12 @@ namespace TeamRandomizer.ViewModels
         {
             get
             {
-                if (Properties.Settings.Default.SummonerData == Empty)
-                {
-                    return new List<SummonerDataModel>();
-                }
-                using (MemoryStream ms = new MemoryStream(Convert.FromBase64String(Properties.Settings.Default.SummonerData)))
-                {
-                    BinaryFormatter bf = new BinaryFormatter();
-                    return (List<SummonerDataModel>)bf.Deserialize(ms);
-                }
+                return Properties.Settings.Default.SummonerData == Empty ? new List<SummonerDataModel>() : StringToObjectHelper.CastFromString<List<SummonerDataModel>>(Properties.Settings.Default.SummonerData);
             }
             set
             {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    BinaryFormatter bf = new BinaryFormatter();
-                    bf.Serialize(ms, value);
-                    ms.Position = 0;
-                    byte[] buffer = new byte[(int)ms.Length];
-                    ms.Read(buffer, 0, buffer.Length);
-                    Properties.Settings.Default.SummonerData = Convert.ToBase64String(buffer);
-                    Properties.Settings.Default.Save();
-                }
+                Properties.Settings.Default.SummonerData = StringToObjectHelper.CastToString(value);
+                Properties.Settings.Default.Save();
                 NotifyOfPropertyChange(() => PlayerList);
             }
         }
@@ -85,6 +72,8 @@ namespace TeamRandomizer.ViewModels
                         //    await
                         //        Randomizer.Complex.Shuffle(PlayerList,Properties.Settings.Default.GroupingSettings,
                         //            TimeSpan.FromSeconds(5));
+
+                        PlayerList = (await Randomizer.Complex.Shuffle(PlayerList.Select(player => (SummonerData)player),StringToObjectHelper.CastFromString<ObservableCollection<GroupingSettingsModel>>(Properties.Settings.Default.GroupingSettings).Select(setting => (GroupSetting)setting), TimeSpan.FromSeconds(5))).Select(entry => (SummonerDataModel)entry).ToList();
                         break;
                     }
             }

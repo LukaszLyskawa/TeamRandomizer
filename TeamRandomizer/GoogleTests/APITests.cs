@@ -1,14 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Google;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Google;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TeamRandomizer.Models;
 
-namespace Google.Tests
+namespace GoogleTests
 {
     [TestClass()]
     public class APITests

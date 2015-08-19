@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Randomizer.Data;
 
 
 namespace Randomizer
@@ -62,31 +63,5 @@ namespace Randomizer
             return resultList;
 
         }
-    }
-
-    public class SummonerData
-    {
-        public SummonerData(string name, int division)
-        {
-            Name = name;
-            Division = division;
-        }
-
-        public string Name { get; }
-        public int Division { get; }
-    }
-
-    public class GroupSetting
-    {
-        public GroupSetting(int from, int to, int number)
-        {
-            From = from;
-            To = to;
-            Number = number;
-        }
-
-        public int From { get; }
-        public int To { get; }
-        public int Number { get; }
     }
 }

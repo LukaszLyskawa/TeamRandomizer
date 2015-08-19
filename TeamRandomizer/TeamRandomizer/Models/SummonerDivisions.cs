@@ -31,6 +31,8 @@ namespace TeamRandomizer.Models
             Values.Add(Master._value,Master);
             Values.Add(Challenger._value,Challenger);
         }
+
+
         private SummonerDivisions(string name)
         {
             _value = name;
@@ -45,6 +47,56 @@ namespace TeamRandomizer.Models
         {
             return value._value;
         }
+
+        public static implicit operator int (SummonerDivisions data)
+        {
+            switch (data._value)
+            {
+                case "Unranked":
+                    return 0;
+                case "Bronze":
+                    return 1;
+                case "Silver":
+                    return 2;
+                case "Gold":
+                    return 3;
+                case "Platinium":
+                    return 4;
+                case "Diamond":
+                    return 5;
+                case "Master":
+                    return 6;
+                case "Challenger":
+                    return 7;
+                default:
+                    return -1;
+            }
+        }
+
+        public static explicit operator SummonerDivisions(int v)
+        {
+            switch (v)
+            {
+                case 0:
+                    return Unranked;
+                case 1:
+                    return Bronze;
+                case 2:
+                    return Silver;
+                case 3:
+                    return Gold;
+                case 4:
+                    return Platinium;
+                case 5:
+                    return Diamond;
+                case 6:
+                    return Master;
+                case 7:
+                    return Challenger;
+            }
+            return null;
+        }
+
 
     }
 }

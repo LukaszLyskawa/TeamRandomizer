@@ -9,6 +9,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:rand="clr-namespace:Randomizer;assembly=Randomizer"
              xmlns:settings="clr-namespace:TeamRandomizer.Properties"
+             xmlns:data="clr-namespace:Randomizer.Data;assembly=Randomizer"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="300"
@@ -34,7 +35,7 @@
             </StackPanel>
             <StackPanel Margin="0,0,0,20">
                 <TextBlock Text="{x:Static settings:Resources.RandomizeSettingsText}" />
-                <ComboBox ItemsSource="{Binding Source={local:EnumVal {x:Type rand:RandomizeType}}}"
+                <ComboBox ItemsSource="{Binding Source={local:EnumVal {x:Type data:RandomizeType}}}"
                           SelectedItem="{Binding RandomizeSetting}" />
             </StackPanel>
             <Grid Visibility="{Binding RandomizeSetting, Converter={StaticResource RandomizeTypeToVisibilityConverter}}">
