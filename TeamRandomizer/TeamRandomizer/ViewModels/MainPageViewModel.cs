@@ -93,7 +93,8 @@ namespace TeamRandomizer.ViewModels
         {
             
             LoadingVisibility = Visibility.Visible;
-            FileHelper.TextFile.WriteFile(PlayerList.ToList(),typeof(SummonerDataModel).GetProperties(),Properties.Settings.Default.FilePath,Properties.Settings.Default.TeamSize);
+            var result = FileHelper.TextFile.WriteFile(PlayerList.ToList(),typeof(SummonerDataModel).GetProperties(),Properties.Settings.Default.FilePath,Properties.Settings.Default.TeamSize);
+            MessageBox.Show(result ? "Export successful." : "Export failed.");
             LoadingVisibility = Visibility.Collapsed;
         }
     }

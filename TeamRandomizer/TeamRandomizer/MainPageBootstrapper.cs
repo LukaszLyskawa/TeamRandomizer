@@ -19,7 +19,7 @@ namespace TeamRandomizer
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            Properties.Settings.Default.SummonerData = "";//clear list - testing purposes
+            //Properties.Settings.Default.SummonerData = "";//clear list - testing purposes
             DisplayRootViewFor<ShellViewModel>();
         }
     }

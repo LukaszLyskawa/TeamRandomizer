@@ -8,8 +8,12 @@ namespace FileHelper
 {
     public static class TextFile
     {
-        public static void WriteFile<T>(IList<T> objectsToWrite,IList<PropertyInfo>fieldsToWrite,string path,int teamSize=5)
+        public static bool WriteFile<T>(IList<T> objectsToWrite,IList<PropertyInfo>fieldsToWrite,string path,int teamSize=5)
         {
+            if (teamSize <= 0)
+            {
+                teamSize = 5;
+            }
             var linesToWrite = new List<string>();
             var i = 0;
             var teamCount = 1;
@@ -50,13 +54,23 @@ namespace FileHelper
 
 
             }
-            using (var stream = new StreamWriter(path))
+            try
             {
-                foreach (var line in linesToWrite)
+                using (var stream = new StreamWriter(path))
                 {
-                    stream.WriteLine(line);
+                    foreach (var line in linesToWrite)
+                    {
+                        stream.WriteLine(line);
+                    }
                 }
             }
+            catch (AccessViolationException e)
+            {
+                return false;
+            }
+            return true;
+
+
         }
     }
 }
