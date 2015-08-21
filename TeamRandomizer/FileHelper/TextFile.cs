@@ -3,38 +3,58 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FileHelper
 {
-    public class TextFile
+    public static class TextFile
     {
-        public void WriteFile<T>(IList<T> objectsToWrite,IList<FieldInfo>fieldsToWrite,string path,int teamSize=5)
+        public static void WriteFile<T>(IList<T> objectsToWrite,IList<PropertyInfo>fieldsToWrite,string path,int teamSize=5)
         {
             var linesToWrite = new List<string>();
-            var type = typeof (T);
-
             var i = 0;
             var teamCount = 1;
             var reserveBench = false;
-            var maxTeamCount = Math.Floor((double) (objectsToWrite.Count/teamSize));
+
+            var maxTeamCount =  ((double)objectsToWrite.Count/teamSize);
+            if (maxTeamCount > Math.Floor(maxTeamCount))
+            {
+                //maxTeamCount -= 1;
+            }
+            
+
             foreach (var objectToWrite in objectsToWrite)
             {
-                foreach (var field in fieldsToWrite)
+
+
+                if (i % teamSize == 0 && !reserveBench)
                 {
-                    if (i%teamSize == 0 && !reserveBench)
+                    if (teamCount > maxTeamCount)
                     {
-                        if (teamCount > maxTeamCount)
-                        {
-                            linesToWrite.Add("Reserve bench");
-                            reserveBench = true;
-                        }
-                        linesToWrite.Add("Team "+ teamCount);
-                        teamCount++;
+                        linesToWrite.Add(Environment.NewLine+"Reserve bench");
+
+                        reserveBench = true;
                     }
-                    linesToWrite.Add(field.GetValue(objectToWrite).ToString());
-                    i++;
+                    else
+                    {
+                        linesToWrite.Add(Environment.NewLine+"Team " + teamCount);
+                        teamCount++;
+                    }                    
+                }
+
+
+                var line= fieldsToWrite.Aggregate("", (current, field) => current + (field.GetValue(objectToWrite) + " "));
+
+                linesToWrite.Add(line);
+
+                i++;
+
+
+            }
+            using (var stream = new StreamWriter(path))
+            {
+                foreach (var line in linesToWrite)
+                {
+                    stream.WriteLine(line);
                 }
             }
         }

@@ -124,7 +124,10 @@
     <value>Clear data</value>
   </data>
   <data name="Export" xml:space="preserve">
-    <value>Export to file - not implemented yet</value>
+    <value>Export to file</value>
+  </data>
+  <data name="FilePath" xml:space="preserve">
+    <value>File Path</value>
   </data>
   <data name="From" xml:space="preserve">
     <value>From</value>
@@ -151,13 +154,16 @@
     <value>Randomize</value>
   </data>
   <data name="RandomizeSettingsText" xml:space="preserve">
-    <value>not implemented yet - Randomizer Settings - not implemented yet</value>
+    <value>Randomizer Settings</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
   <data name="SettingsPageWatermark" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="TeamSize" xml:space="preserve">
+    <value>Team Size:</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Team Randomizer</value>

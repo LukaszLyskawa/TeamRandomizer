@@ -66,14 +66,13 @@ namespace TeamRandomizer.ViewModels
                     }
                 case RandomizeType.Grouped:
                     {
-                        //TODO cast SummonerDataModel -> Randomizer.SummonerData
-                        //TODO get grouping settings (use settings page view model method -> maybe extract to class)
-                        //PlayerList =
-                        //    await
-                        //        Randomizer.Complex.Shuffle(PlayerList,Properties.Settings.Default.GroupingSettings,
-                        //            TimeSpan.FromSeconds(5));
-
-                        PlayerList = (await Randomizer.Complex.Shuffle(PlayerList.Select(player => (SummonerData)player),StringToObjectHelper.CastFromString<ObservableCollection<GroupingSettingsModel>>(Properties.Settings.Default.GroupingSettings).Select(setting => (GroupSetting)setting), TimeSpan.FromSeconds(5))).Select(entry => (SummonerDataModel)entry).ToList();
+                        await Task.Run(async () =>
+                        {
+                            PlayerList = (await Randomizer.Complex.Shuffle(PlayerList.Select(player => (SummonerData)player), 
+                                                                           StringToObjectHelper.CastFromString<ObservableCollection<GroupingSettingsModel>>(Properties.Settings.Default.GroupingSettings).Select(setting => (GroupSetting)setting), 
+                                                                           TimeSpan.FromSeconds(5))).Select(entry => (SummonerDataModel)entry).ToList();
+                        });
+                        
                         break;
                     }
             }
@@ -92,9 +91,9 @@ namespace TeamRandomizer.ViewModels
 
         public void Export()
         {
+            
             LoadingVisibility = Visibility.Visible;
-            //TODO create excel/xml/json/?
-            //TODO Team visualization
+            FileHelper.TextFile.WriteFile(PlayerList.ToList(),typeof(SummonerDataModel).GetProperties(),Properties.Settings.Default.FilePath,Properties.Settings.Default.TeamSize);
             LoadingVisibility = Visibility.Collapsed;
         }
     }

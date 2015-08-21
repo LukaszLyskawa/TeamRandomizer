@@ -83,16 +83,6 @@
     <Compile Include="Models\SummonerDataModel.cs" />
     <Compile Include="Models\SummonerDivisions.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Properties\Resources.pl.Designer.cs">
-      <DependentUpon>Resources.pl.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Properties\Resources.en.Designer.cs">
-      <DependentUpon>Resources.en.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -126,14 +116,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.pl.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.pl.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.en.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.en.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -178,6 +160,10 @@
     <Resource Include="sinlogo_sigfiora.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FileHelper\FileHelper.csproj">
+      <Project>{8e4d2cdb-834c-4d04-a1ab-1d3c7511f80b}</Project>
+      <Name>FileHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Google\Google.csproj">
       <Project>{876d9617-87d3-43e4-8bf5-f075ac8faae2}</Project>
       <Name>Google</Name>

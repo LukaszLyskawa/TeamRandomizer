@@ -51,7 +51,6 @@ namespace TeamRandomizer.Models
             {
                 _amount = value;
                 OnPropertyChanged();
-
             }
         }
         public ICollection<string> Divisions => SummonerDivisions.Values.Keys;

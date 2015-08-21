@@ -79,11 +79,20 @@ namespace TeamRandomizer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Export to file - not implemented yet.
+        ///   Looks up a localized string similar to Export to file.
         /// </summary>
         public static string Export {
             get {
                 return ResourceManager.GetString("Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Path.
+        /// </summary>
+        public static string FilePath {
+            get {
+                return ResourceManager.GetString("FilePath", resourceCulture);
             }
         }
         
@@ -160,7 +169,7 @@ namespace TeamRandomizer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to not implemented yet - Randomizer Settings - not implemented yet.
+        ///   Looks up a localized string similar to Randomizer Settings.
         /// </summary>
         public static string RandomizeSettingsText {
             get {
@@ -183,6 +192,15 @@ namespace TeamRandomizer.Properties {
         public static string SettingsPageWatermark {
             get {
                 return ResourceManager.GetString("SettingsPageWatermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team Size:.
+        /// </summary>
+        public static string TeamSize {
+            get {
+                return ResourceManager.GetString("TeamSize", resourceCulture);
             }
         }
         

@@ -2,9 +2,12 @@
 using FileHelper;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using TeamRandomizer.Models;
 
 namespace FileHelper.Tests
 {
@@ -14,8 +17,41 @@ namespace FileHelper.Tests
         [TestMethod()]
         public void WriteFileTest()
         {
-            throw new NotImplementedException();
-            Assert.Fail();
+            var list = new List<SummonerDataModel>();
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            list.Add(new SummonerDataModel("ASD","Unranked"));
+            TextFile.WriteFile(list,typeof(SummonerDataModel).GetProperties(),"D:/Test.txt");
+            Assert.IsTrue(File.Exists("D:/Test.txt"));
         }
     }
 }

@@ -51,8 +51,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextFileTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FileHelper\FileHelper.csproj">
+      <Project>{8E4D2CDB-834C-4D04-A1AB-1D3C7511F80B}</Project>
+      <Name>FileHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeamRandomizer\TeamRandomizer.csproj">
+      <Project>{39266290-6c3c-4212-9df6-d90c13fa5023}</Project>
+      <Name>TeamRandomizer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
